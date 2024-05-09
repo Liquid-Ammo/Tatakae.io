@@ -4,54 +4,10 @@ from subprocess import call  #for clear
 import os  # for clear
 from time import sleep  #for time delay
 
-
 #to clear the screen
 def clear():
   _ = call('clear' if os.name == 'posix' else 'cls')
-
-
 clear()
-
-# under test do not edit the code below "the commented one"
-'''
-#pygame init
-pygame.init()
-#screen
-screen = pygame.display.set_mode((800, 600))
-player1 = pygame.Rect((0, 0, 50, 50))
-player2 = pygame.Rect((70, 0, 50, 50))
-run = True
-
-while run:
-
-  pygame.draw.rect(screen, (0, 0, 255), player1)
-  pygame.draw.rect(screen, (255, 0, 0), player2)
-
-  for event in pygame.event.get():
-    key = pygame.key.get_pressed()
-    if event.type == pygame.QUIT:
-      run = False
-    if key[pygame.K_a]:
-      player1.x -= 1
-    if key[pygame.K_d]:
-      player1.x += 1
-    if key[pygame.K_w]:
-      player1.y -= 1
-    if key[pygame.K_s]:
-      player1.y += 1
-
-    if key[pygame.K_h]:
-      player2.x -= 1
-    if key[pygame.K_k]:
-      player2.x += 1
-    if key[pygame.K_u]:
-      player2.y -= 1
-    if key[pygame.K_j]:
-      player2.y += 1
-  pygame.display.update()
-
-pygame.quit()
-'''
 
 
 # damage oppo ,damage self , chakara oppo, chakara self, afterblock oppo, afterblock self
@@ -98,7 +54,7 @@ print(a1, a2, a3, a4, a5, sep="\n")
 
 #jumping
 def jump(c=1):
-  n = 4
+  n=10
   if c == 1:
     n = 0
   if c == 2:
@@ -157,9 +113,61 @@ def duck(c):
 
 
 #inputs for now will be part of pygame later
-while True:
+for i in range (0,4):
   a = int(input("jump : "))
   jump(a)
   b = int(input("Duck : "))
   duck(b)
-#Lalith
+
+# under test do not edit the code below "the commented one"
+
+#pygame init
+pygame.init()
+#screen
+screen = pygame.display.set_mode((1080,600))
+player1 = pygame.Rect((0, 0, 50, 50))
+player2 = pygame.Rect((70, 0, 50, 50))
+run = True
+
+
+
+bg_image=pygame.image.load("bg.jpg").convert_alpha()
+
+def draw_bg():
+  bg_ima=pygame.transform.scale(bg_image,(1080,600))
+  screen.blit(bg_ima,(0,0))
+
+
+
+while run:
+    
+  pygame.draw.rect(screen, (0, 0, 255), player1)
+  pygame.draw.rect(screen, (255, 0, 0), player2)
+  draw_bg()
+  for event in pygame.event.get():
+    key = pygame.key.get_pressed()
+    if event.type == pygame.QUIT:
+      run = False
+    if key[pygame.K_a]:
+      player1.x -= 1
+    if key[pygame.K_d]:
+      player1.x += 1
+    if key[pygame.K_w]:
+      player1.y -= 1
+    if key[pygame.K_s]:
+      player1.y += 1
+
+    if key[pygame.K_h]:
+      player2.x -= 1
+    if key[pygame.K_k]:
+      player2.x += 1
+    if key[pygame.K_u]:
+      player2.y -= 1
+    if key[pygame.K_j]:
+      player2.y += 1
+  pygame.display.update()
+
+pygame.quit()
+
+
+
