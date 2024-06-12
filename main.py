@@ -11,7 +11,6 @@ def clear():
 
 
 clear()
-'''
 
 # damage oppo ,damage self , chakara oppo, chakara self, afterblock oppo, afterblock self
 # Changed Move Names
@@ -128,52 +127,3 @@ for i in range(0, 4):
     jump(a)
     b = int(input("Duck : "))
     duck(b)
-'''
-# under test do not edit the code below "the commented one"
-
-# pygame init
-pygame.init()
-# screen
-screen = pygame.display.set_mode((1080, 600))
-clock = pygame.time.Clock()
-pygame.display.set_caption("Tatakae.io")
-player1 = pygame.Rect((0, 0, 50, 50))
-player2 = pygame.Rect((70, 0, 50, 50))
-run = True
-
-bg_image = pygame.image.load("bg.jpg").convert_alpha()
-
-
-def draw_bg():
-  bg_ima = pygame.transform.scale(bg_image, (1080, 600))
-  screen.blit(bg_ima, (0, 0))
-
-
-while run:
-  pygame.draw.rect(screen, (0, 0, 255), player1)
-  pygame.draw.rect(screen, (255, 0, 0), player2)
-  draw_bg()
-  for event in pygame.event.get():
-    key = pygame.key.get_pressed()
-    if event.type == pygame.QUIT:
-      run = False
-    if key[pygame.K_a]:
-      player1.x -= 1
-    if key[pygame.K_d]:
-      player1.x += 1
-    if key[pygame.K_w]:
-      player1.y -= 1
-    if key[pygame.K_s]:
-      player1.y += 1
-
-    if key[pygame.K_h]:
-      player2.x -= 1
-    if key[pygame.K_k]:
-      player2.x += 1
-    if key[pygame.K_u]:
-      player2.y -= 1
-    if key[pygame.K_j]:
-      player2.y += 1
-  pygame.display.update()
-  clock.tick(120)
-pygame.quit()
