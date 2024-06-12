@@ -5,6 +5,7 @@ import os  # for clear
 from time import sleep  # for time delay
 
 
+
 # to clear the screen
 def clear():
   _ = call("clear" if os.name == "posix" else "cls")
@@ -12,37 +13,7 @@ def clear():
 
 clear()
 
-# damage oppo ,damage self , chakara oppo, chakara self, afterblock oppo, afterblock self
-# Changed Move Names
-Moves = {
-    "Berserker Barrage": [-500, -100, 0, -200, 0, 0],  # 1
-    "Deadly Chop": [-150, 0, 0, 0, 0, 0],  # 2
-    "Tempest Thrust": [-200, 0, 0, -100, -100, 0],  # 3
-    "Flame Breath": [-250, 0, 0, -200, 0, -200],  # 4
-    "Earth Shield": ["-50", +200, 0, -100, 0, 0],  # 5
-    "Tidal Takedown": ["-250", 0, 0, -100, 0, 0],  # 6
-    "Unwavering Will": [0, -150, 0, +300, 0, 0],  # 7
-    "Eye Gouge": ["100", 0, 0, 0, 0, 0],  # 8
-    "Life Drain": [-100, 0, -200, -200, 0, 0],  # 9
-    "Gods Grace": [0, +150, 0, +150, 0, 0],  # 10
-    "Aura of Restoration": [0, +400, 0, -300, 0, 0],  # 11
-    "Skyward Leap": [0, 0, 0, -50, 0, 0],  # 12
-    None: [0, 0, 0, 10, 0, 0],  # 13
-}
 
-# Move clasification
-attack = [
-    "Berserker Barrage",
-    "Deadly Chop",
-    "Tempest Thrust",
-    "Flame Breath",
-    "Tidal Takedown",
-    "Eye Gouge",
-]
-defence = ["Earth Shield", "Aura of Restoration", "Gods Grace"]
-filler = ["Unwavering Will", "Skyward Leap", "Life Drain", None]
-
-# initial strength
 
 p1_hp = 1000
 p2_hp = 1000
@@ -55,8 +26,9 @@ a1 = [" ", 0, 0, 0, 0, 0, 0, 0, 0, " "]
 a2 = [" ", 0, 0, 0, 0, 0, 0, 0, 0, " "]
 a3 = ["O", 0, 0, 0, 0, 0, 0, 0, 0, "O"]
 a4 = ["|", 0, 0, 0, 0, 0, 0, 0, 0, "|"]
-a5 = ["^", 0, 0, 0, 0, 0, 0, 0, 0, "^"]
-print(a1, a2, a3, a4, a5, sep="\n")
+a5 = ["|", 0, 0, 0, 0, 0, 0, 0, 0, "|"]
+a6 = ["^", 0, 0, 0, 0, 0, 0, 0, 0, "^"] 
+print(a0, a1, a2, a3, a4, a5, a6, sep="\n")
 
 # functions
 
@@ -71,17 +43,19 @@ def jump(c=1):
     sleep(0.3)
     clear()
     for i in range(2):
-        print(a1, a2, a3, a4, a5, sep="\n")
+        print(a0, a1, a2, a3, a4, a5, a6, sep="\n")
         a1[n] = a2[n]
         a2[n] = a3[n]
         a3[n] = a4[n]
         a4[n] = a5[n]
-        a5[n] = a0[n]
+        a5[n] = a6[n]
+        a6[n] = a0[n]
         sleep(0.1)
         print()
         clear()
     for i in range(2):
-        print(a1, a2, a3, a4, a5, sep="\n")
+        print(a0, a1, a2, a3, a4, a5, a6, sep="\n")
+        a6[n] = a5[n]
         a5[n] = a4[n]
         a4[n] = a3[n]
         a3[n] = a2[n]
@@ -90,7 +64,7 @@ def jump(c=1):
         sleep(0.1)
         print()
         clear()
-    print(a1, a2, a3, a4, a5, sep="\n")
+    print(a0, a1, a2, a3, a4, a5, a6, sep="\n")
 
 
 # ducking
@@ -103,7 +77,7 @@ def duck(c):
     sleep(0.3)
     clear()
     if True:
-        print(a1, a2, a3, a4, a5, sep="\n")
+        print(a0, a1, a2, a3, a4, a5, a6, sep="\n")
         a0[n] = a4[n]
         a4[n] = a3[n]
         a3[n] = a2[n]
@@ -111,14 +85,14 @@ def duck(c):
         print()
         clear()
     if True:
-        print(a1, a2, a3, a4, a5, sep="\n")
+        print(a0, a1, a2, a3, a4, a5, a6, sep="\n")
         a3[n] = a4[n]
         a4[n] = a0[n]
         a0[n] = a1[n]
         sleep(0.25)
         print()
         clear()
-    print(a1, a2, a3, a4, a5, sep="\n")
+    print(a0, a1, a2, a3, a4, a5, a6, sep="\n")
 
 
 # inputs for now will be part of pygame later
