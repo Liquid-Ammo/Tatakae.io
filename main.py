@@ -4,6 +4,31 @@ from Attack import Moves
 pygame.init()
 clock = pygame.time.Clock()
 
+testmove = "Infinite Tsukuyomi"
+
+
+class attack:
+
+  def __init__(self, user, name, hp_oppo, hp_self, ch_oppo, ch_self, velo,
+               spread):
+    if user == 1:
+      self.x = player1.x
+      self.y = player1.y
+      self.velo = velo
+    else:
+      self.x = player2.x
+      self.y = player2.y
+      self.velo = -velo
+    self.attack_name = name
+    self.hp_oppo = hp_oppo
+    self.hp_self = hp_self
+    self.ch_oppo = ch_oppo
+    self.ch_self = ch_self
+    self.spread = spread
+
+  def draw(self):
+    pygame.draw.circle(screen, (255, 0, 0), (self.x, self.y), self.spread)
+
 
 class player:
 
@@ -18,9 +43,9 @@ class player:
     self.duck = False
     self.jumpCount = 0
     self.duckCount = 0
-    self.attackCount = 0
     self.hp = 1000
     self.ck = 1500
+    self.moves = []
 
   def damage(self, damage):
     self.hp -= damage
@@ -32,13 +57,10 @@ class player:
     pygame.draw.rect(screen, self.color, (self.x, self.y, self.w, self.h))
 
   def ducknow(self):
-
-    if not self.duck:
-      self.duck = True
     if self.duck:
       if self.duckCount < 7:
         self.y += self.vel
-        self.w -= 20
+        self.h -= 20
         self.duckCount += 1
 
       elif self.duckCount < 11:
@@ -46,7 +68,7 @@ class player:
 
       elif self.duckCount < 18:
         self.y -= self.vel
-        self.w += 20
+        self.h += 20
         self.duckCount += 1
 
       else:
@@ -93,25 +115,56 @@ while run:
   key = pygame.key.get_pressed()
 
   if key[pygame.K_v]:
-    if not player1.jump:
+    if (not player1.duck) and (not player1.jump):
       player1.jump = True
   player1.jumpnow()
 
   if key[pygame.K_n]:
-    if not player2.jump:
+    if (not player2.duck) and (not player2.jump):
       player2.jump = True
   player2.jumpnow()
 
-  if key[pygame.K_n]:
-    player2.jumpnow()
-
   if key[pygame.K_m]:
-    player2.ducknow()
+    if (not player2.duck) and (not player2.jump):
+      player2.duck = True
+  player2.ducknow()
 
+  if key[pygame.K_c]:
+    if (not player1.duck) and (not player1.jump):
+      player1.duck = True
+  player1.ducknow()
+
+  for i in player1.moves:
+    if i.x < 1280:
+      i.x += i.velo
+      i.draw()
+    else:
+      player1.moves.pop(player1.moves.index(i))
+
+  for i in player2.moves:
+    if i.x > 0:
+      i.x += i.velo
+      i.draw()
+    else:
+      player2.moves.pop(player2.moves.index(i))
+
+  if key[pygame.K_f]:
+    if len(player1.moves) < 5:
+      player1.moves.append(
+          attack(1, testmove, Moves[testmove][0], Moves[testmove][1],
+                 Moves[testmove][2], Moves[testmove][3], Moves[testmove][6],
+                 Moves[testmove][7]))
+
+  if key[pygame.K_j]:
+    if len(player2.moves) < 5:
+      player2.moves.append(
+          attack(2, testmove, Moves[testmove][0], Moves[testmove][1],
+                 Moves[testmove][2], Moves[testmove][3], Moves[testmove][6],
+                 Moves[testmove][7]))
   player2.draw()
   player1.draw()
 
   pygame.display.update()
-  clock.tick(20)
+  clock.tick(60)
 
 pygame.quit()

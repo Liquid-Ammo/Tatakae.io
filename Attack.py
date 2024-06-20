@@ -1,6 +1,6 @@
 # damage oppo ,damage self , chakara oppo, chakara self, afterblock oppo, afterblock self, attack velocity, attack spread 
 Moves = {
-    "Infinite Tsukuyomi": [-500, -100, -20, -200, -20, -20, 20 ],  # 1
+    "Infinite Tsukuyomi": [-500, -100, -20, -200, -20, -20, 20, 90 ],  # 1
     "Deadly Chop": [-150, 0, 0, 0, 0, 0],  # 2
     "Tempest Thrust":[-200, 0, 0, -100, -100, 0],  # 3
     "Flame Breath": [-250, 0, 0, -200, 0, -200],  # 4
